@@ -1,34 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Socket.IO Chat App</title>
-  <script src="/socket.io/socket.io.js"></script>
-</head>
-<body>
-  <ul id="messages"></ul>
-  <form id="form" action="">
-    <input id="input" autocomplete="off" /><button>Send</button>
-  </form>
-  <script>
-    const socket = io();
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <title>WhatsApp Chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Reset some default styles */
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
 
-    const form = document.getElementById('form');
-    const input = document.getElementById('input');
-    const messages = document.getElementById('messages');
+/* Main styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (input.value) {
-        socket.emit('chat message', input.value);
-        input.value = '';
-      }
-    });
+.chat-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
-    socket.on('chat message', (msg) => {
-      const li = document.createElement('li');
-      li.textContent = msg;
-      messages.appendChild(li);
-    });
-  </script>
-</body>
+.chat-header {
+  background-color: #075e54;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.chat-messages {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+#message-input {
+  flex-grow: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+}
+
+#send-button {
+  background-color: #075e54;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-message">
+        <div class="chat-message-header">
+          <img src="avatar.jpg" alt="Avatar" />
+          <h4>John Doe</h4>
+          <span class="chat-message-time">10:00 AM</span>
+        </div>
+        <div class="chat-message-body">
+          <p>Hello, how are you?</p>
+        </div>
+      </div>
+      <div class="chat-message chat-message-received">
+        <div class="chat-message-header">
+          <img src="avatar.jpg" alt="Avatar" />
+          <h4>Jane Doe</h4>
+          <span class="chat-message-time">10:01 AM</span>
+        </div>
+        <div class="chat-message-body">
+          <p>I'm good, thanks for asking. How about you?</p>
+        </div>
+      </div>
+      <div class="chat-message">
+        <div class="chat-message-header">
+          <img src="avatar.jpg" alt="Avatar" />
+          <h4>John Doe</h4>
+          <span class="chat-message-time">10:02 AM</span>
+        </div>
+        <div class="chat-message-body">
+          <p>I'm doing well, thanks.</p>
+        </div>
+      </div>
+      <form class="chat-form">
+        <input type="text" placeholder="Type a message" />
+        <button type="submit"><i class="fa fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </body>
 </html>
