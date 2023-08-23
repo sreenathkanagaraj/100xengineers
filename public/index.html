@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WhatsApp-like Chat</title>
-  <script src="/socket.io/socket.io.js"></script>
- <style>
+  <title>Web chat app</title>
+  
+  <style>
     /* Reset some default styles */
 body, h1, p, ul, li {
   margin: 0;
@@ -16,43 +16,84 @@ body, h1, p, ul, li {
 body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.chat-container {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
+.container {
+  display: flex;
+  background-color: #36393f;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  width: 900px;
+  height: 600px;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #2f3136;
+  color: #b9bbbe;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid #202225;
+  text-align: center;
+}
+
+.online-users {
+  list-style: none;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.online-user {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.online-user:hover {
+  background-color: #202225;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #2c2f33;
 }
 
 .chat-header {
-  background-color: #075e54;
+  background-color: #36393f;
   color: #fff;
   padding: 12px;
   text-align: center;
 }
 
 .chat-messages {
-  max-height: 400px;
-  overflow-y: auto;
+  flex-grow: 1;
   padding: 12px;
+  overflow-y: auto;
 }
 
 .message {
-  background-color: #e1ffc7;
-  border-radius: 10px;
+  background-color: #40444b;
+  border-radius: 8px;
   padding: 8px 12px;
-  margin: 6px 0;
+  margin: 8px 0;
 }
 
 .chat-input {
   display: flex;
   align-items: center;
-  background-color: #fff;
   padding: 12px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #202225;
 }
 
 #message-input {
@@ -60,11 +101,12 @@ body {
   padding: 10px;
   border: none;
   border-radius: 20px;
-  background-color: #f5f5f5;
+  background-color: #40444b;
+  color: #b9bbbe;
 }
 
 #send-button {
-  background-color: #25d366;
+  background-color: #7289da;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -76,36 +118,51 @@ body {
 }
 
 #send-button:hover {
-  background-color: #128c7e;
+  background-color: #5f73bc;
 }
-
-/* Media queries for responsiveness */
-@media (max-width: 600px) {
-  .chat-container {
-    max-width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-
- </style>
-
+  </style>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-header">
-      <h1>Chat App</h1>
-    </div>
-    <div class="chat-messages" id="chat-messages">
-      <!-- Messages will be added here -->
-  
-    <div class="chat-input">
+  <div class="sidebar">
+    <h2>Online Users</h2>
+    <ul class="online-users" id="online-users">
+      <!-- Online users will be added here -->
+      <li class="online-user">User 1</li>
+      <li class="online-user">User 2</li>
+      <li class="online-user">User 3</li>
+      <!-- Add more online users here -->
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="chat-container">
+      <div class="chat-header">
+        <h1>Web Chat App</h1>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <!-- Messages will be added here -->
+        <div class="message">
+          <p>Sample message</p>
+        </div>
+      </div>
+      <div class="chat-input">
         <input type="text" id="message-input" placeholder="Type your message...">
         <button id="send-button">Send</button>
+      </div>
     </div>
-       
-   
-   
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const enteredName = prompt("Enter your name:");
+      
+      if (enteredName) {
+        const onlineUsersList = document.getElementById("online-users");
+        const newUserListItem = document.createElement("li");
+        newUserListItem.className = "online-user";
+        newUserListItem.textContent = enteredName;
+        onlineUsersList.appendChild(newUserListItem);
+      }
+    });
+  </script>
   <script src="script.js"></script>
   <script src="/socket.io/socket.io.js"></script>
 </body>
