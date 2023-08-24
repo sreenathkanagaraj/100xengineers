@@ -136,13 +136,13 @@ body {
       <div class="chat-messages" id="chat-messages">
         <!-- Messages will be added here -->
         <div class="message">
-          <p>Sample message</p>
+          <p>anyone here?</p>
         </div>
       </div>
       <div class="chat-input">
-        <input type="text" id="message-input" placeholder="Write something...">
+        <input type="text" id="message-input" placeholder="Write something..."></input>
         <button id="send-button">Send</button>
-      </div>
+      </div>>
     </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
@@ -160,15 +160,6 @@ body {
     const socket = io('http://localhost:4000'); 
         socket.emit("userJoined", enteredName);
   }
-});
-
-const socket = io('http://localhost:4000'); 
-socket.on("userJoined", (username) => {
-  const onlineUsersList = document.getElementById("online-users");
-  const newUserListItem = document.createElement("li");
-  newUserListItem.className = "online-user";
-  newUserListItem.textContent = username;
-  onlineUsersList.appendChild(newUserListItem);
 });
 
   </script>

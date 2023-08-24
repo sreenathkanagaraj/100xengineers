@@ -6,15 +6,32 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-io.on('connection', (socket) => {
-  console.log('A user connected');
+app.use(express.static(__dirname + "/public"));
 
-  socket.on('userJoined', (username) => {
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  socket.on("userJoined", (username) => {
     // Broadcast the new user to all connected clients
-    socket.broadcast.emit('userJoined', username);
+    socket.broadcast.emit("userJoined", username);
   });
 
-  // Other event listeners as needed
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
+  });
+
+  socket.on("chat message", (message) => {
+    // Other event listeners as needed
+    io.emit("chat message", message); // Broadcast the message to all connected clients
+  });
+
+  socket.on("send button", () => {
+    console.log("auto clear");
+  });
 });
 
 server.listen(4000, () => {
