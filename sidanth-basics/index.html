@@ -3,6 +3,12 @@
 <head>
     <title>My First HTML Page tryout</title>
     <style>
+        #specialtext{
+            color: rgb(245, 239, 239);
+        }
+        .highlight{
+            background-color: aqua;
+        }
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: rgb(194, 211, 238);
@@ -38,12 +44,12 @@
         
 
     </style>
-
+   
 </head>
 <body>
-        <h1>Welcome to My Page!</h1><br>
+        <h1 class="highlight">Welcome to My Page!</h1><br>
     <p>This is a paragraph. HTML is fun! having fun with the exercises but little steps matter!</p><br>
-        <h2> starting with the exercise</h2>
+        <h2 id="specialtext"> starting with the exercise</h2>
 
     
     <ol>
@@ -68,8 +74,62 @@
 <a href="https//:www.overpoweredai.com">overpoweredai</a><br>
     <br>
 <a href="https//:www.100xengineers.com">.100xengineers</a>
-      
+
+<script>
+    console.log("Hello sidhant this is sree");
+    console.log(5+10); 
+    console.log(5*10/5);
+
+    let city ="coimbatore"
+    console.log(city)
+
+    let samy = 5
+    console.log(samy)
+    let bumy = 9
+    console.log(bumy)
+
+    let ramy=bumy+samy;
+
+    let seed = "10"
+    console.log(seed)
+    let greed = "25856"
+    console.log(greed)
+
+    let freed=parseInt(seed)*parseFloat(greed);
 
 
+    console.log("the salary of two people together is ="+ ramy);
+    console.log("just multipying it together is ="+ freed);
+
+    function greet() {
+        console.log("this is a new function greet");
+            }
+    
+      greet();
+ 
+function subtractnumbers(freed, ramy) {
+    let subtractnumbers = freed-ramy;
+    return subtractnumbers;
+    }
+
+    let result = subtractnumbers(freed,ramy);
+    console.log(result);
+
+    function sayhello() {
+        console.log("this is a function to get and write name");        
+        let sayhello = prompt("gimme ur name?");
+        if (sayhello !== null) {
+            console.log("hello  "+ sayhello);
+            
+        } else {
+            console.log("u din gimme anythin");
+        }        
+            }
+
+        sayhello();
+        
+    
+</script>
+  
 </body>
 </html>
