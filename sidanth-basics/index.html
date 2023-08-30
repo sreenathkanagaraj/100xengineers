@@ -127,8 +127,38 @@ function subtractnumbers(freed, ramy) {
             }
 
         sayhello();
-        
+
+        function addingnumbers(yourfirst, yoursecond) {
+    let addingnumbers = yourfirst+yoursecond;
+    return addingnumbers;
+    }
     
+    let yourfirst = parseInt(prompt("enter your first"));
+    let yoursecond = parseInt(prompt("enter your second"));
+    
+        if (!isNaN(yourfirst)&&!isNaN(yoursecond)) {
+            let total =addingnumbers(yourfirst,yoursecond);
+            console.log("added value =  " + total);
+        } else {
+            console.log("gimme something man!");
+        }
+    
+    addingnumbers();
+
+const myDOB = new Date(1996,6,16);  
+console.log("my DOB is = " + myDOB);
+var favouritefoods = ["chicken", "mutton", "fish"]; 
+console.log("my favourite foods are = " + favouritefoods[0], favouritefoods[1], favouritefoods[2]);
+
+var book = {
+    title: "yep!i'm the girl who fell in love with you",
+    author: "sreenath kanagaraj",
+    publicationyear:"2024"
+};
+console.log("title: "+ book.title);
+console.log("author: "+ book.author);
+console.log("publication year: "+ book.publicationyear);
+
 </script>
   
 </body>
